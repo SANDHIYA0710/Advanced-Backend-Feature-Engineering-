@@ -1,75 +1,150 @@
-# 🏥 Advanced Backend & Feature Engineering - Hospital Management API
+# Hospital Management Backend API
 
-## 📌 Project Objective
+## Overview
 
-This project is developed using **FastAPI** to build an advanced backend application with clean architecture, real-world business logic, JWT authentication, role-based authorization, appointment management, file handling, background tasks, and unit testing.
+This project is a backend-driven Hospital Management System developed using FastAPI with a modular and scalable architecture. The application focuses on authentication, role-based authorization, appointment scheduling, doctor and patient management, secure file uploads, and structured API development practices.
 
-The backend simulates a **Hospital Management System** where:
-
-- Users can register/login with roles
-- Doctors can be managed
-- Patients can be managed
-- Appointments can be booked and tracked
-- Password reset functionality is available
-- Patient files can be uploaded securely
-- APIs are protected using JWT token authentication
+The system is designed to simulate a real-world healthcare backend environment with clean code organization, layered architecture, and secure API handling.
 
 ---
 
-# 🚀 Tech Stack Used
+## Core Functionalities
 
-- Python 3.11
-- FastAPI
-- Uvicorn
-- SQLAlchemy ORM
-- SQLite Database
-- Pydantic
-- JWT Authentication
-- Passlib + bcrypt
-- OAuth2PasswordBearer
-- Pytest
-- Multipart File Upload
+### Authentication & Authorization
+
+* User Registration
+* Secure Login System
+* JWT Token Authentication
+* OAuth2 Password Flow
+* Role-Based Access Control
+
+### Doctor Management
+
+* Add Doctor
+* View Doctors
+* Update Doctor Information
+* Delete Doctor
+* Search & Filter Doctors
+
+### Patient Management
+
+* Add Patients
+* Manage Patient Records
+* Search Patients
+* Update/Delete Patient Information
+
+### Appointment Management
+
+* Schedule Appointments
+* Update Appointment Status
+* Prevent Duplicate Time Slot Booking
+* Appointment Filtering and Pagination
+
+### File Upload System
+
+* Upload Patient Reports
+* File Validation
+* Metadata Storage
+* Secure File Handling
+
+### Password Management
+
+* Forgot Password API
+* Reset Password Functionality
+* Password Hashing using bcrypt
+
+### Testing & Error Handling
+
+* Unit Testing using Pytest
+* Global Exception Handling
+* Structured API Responses
 
 ---
 
-# 📁 Professional Backend Folder Structure
+## Technologies Used
+
+* Python 3.14
+* FastAPI
+* Uvicorn
+* SQLAlchemy
+* SQLite
+* Pydantic
+* JWT Authentication
+* Passlib (bcrypt)
+* OAuth2PasswordBearer
+* Pytest
+
+---
+
+## Project Structure
 
 ```text
-backend/
-│── app/
+Advanced_Backend/
+│
+├── app/
+│   │── __init__.py
 │   │── main.py
 │   │
+│   ├── api/
+│   │   ├── __init__.py
+│   │   ├── deps.py
+│   │   │
+│   │   └── v1/
+│   │       ├── __init__.py
+│   │       ├── router.py
+│   │       │
+│   │       └── endpoints/
+│   │           ├── __init__.py
+│   │           ├── auth.py
+│   │           ├── doctors.py
+│   │           ├── patients.py
+│   │           ├── appointments.py
+│   │           ├── users.py
+│   │           └── files.py
+│   │
 │   ├── core/
+│   │   ├── __init__.py
 │   │   ├── config.py
 │   │   ├── security.py
 │   │   └── constants.py
 │   │
 │   ├── db/
+│   │   ├── __init__.py
 │   │   ├── base.py
 │   │   ├── session.py
 │   │   └── init_db.py
 │   │
-│   ├── models/
-│   │   ├── user.py
-│   │   ├── doctor.py
-│   │   ├── patient.py
-│   │   ├── appointment.py
-│   │   └── file.py
+│   ├── middleware/
+│   │   ├── __init__.py
+│   │   └── error_handler.py
 │   │
-│   ├── schemas/
+│   ├── models/
+│   │   ├── __init__.py
 │   │   ├── user.py
-│   │   ├── auth.py
 │   │   ├── doctor.py
 │   │   ├── patient.py
 │   │   ├── appointment.py
 │   │   └── file.py
 │   │
 │   ├── repositories/
+│   │   ├── __init__.py
 │   │   ├── user_repo.py
 │   │   ├── doctor_repo.py
-│   │   └── appointment_repo.py
+│   │   ├── patient_repo.py
+│   │   ├── appointment_repo.py
+│   │   └── file_repo.py
+│   │
+│   ├── schemas/
+│   │   ├── __init__.py
+│   │   ├── auth.py
+│   │   ├── user.py
+│   │   ├── doctor.py
+│   │   ├── patient.py
+│   │   ├── appointment.py
+│   │   └── file.py
 │   │
 │   ├── services/
+│   │   ├── __init__.py
 │   │   ├── auth_service.py
 │   │   ├── user_service.py
 │   │   ├── doctor_service.py
@@ -77,266 +152,134 @@ backend/
 │   │   ├── appointment_service.py
 │   │   └── file_service.py
 │   │
-│   ├── api/
-│   │   ├── deps.py
-│   │   └── v1/
-│   │       ├── router.py
-│   │       └── endpoints/
-│   │           ├── auth.py
-│   │           ├── users.py
-│   │           ├── doctors.py
-│   │           ├── patients.py
-│   │           ├── appointments.py
-│   │           └── files.py
-│   │
 │   ├── utils/
-│   │   ├── response.py
+│   │   ├── __init__.py
+│   │   ├── validators.py
 │   │   ├── pagination.py
-│   │   └── validators.py
-│   │
-│   ├── middleware/
-│   │   └── error_handler.py
+│   │   └── response.py
 │   │
 │   ├── background/
+│   │   ├── __init__.py
 │   │   └── tasks.py
 │   │
 │   └── uploads/
 │
-│── tests/
+├── tests/
+│   ├── __init__.py
 │   ├── test_auth.py
+│   ├── test_doctors.py
+│   ├── test_patients.py
 │   └── test_appointments.py
 │
-│── .env
-│── requirements.txt
-└── README.md
+├── .env
+├── requirements.txt
+├── README.md
+└── advanced_backend.db
+```
 
+---
 
-🔐 Key Backend Features Implemented
-✅ 1. Advanced JWT Authentication
-User Registration
-User Login
-JWT Access Token Generation
-Protected APIs using Bearer Token
-OAuth2PasswordBearer Integration
-✅ 2. Password Security
-Password hashing using bcrypt
-Password verification during login
-Forgot Password API
-Reset Password API using secure JWT reset token
-✅ 3. Role Based Access Control (RBAC)
+## Installation
 
-Three user roles are implemented:
+### Clone Repository
 
-Admin
-Doctor
-Patient
+```bash
+git clone https://github.com/YOUR_USERNAME/Advanced-Backend-Feature-Engineering-.git
+```
 
-API access is restricted based on roles.
+### Move to Project Directory
 
-Examples:
+```bash
+cd Advanced-Backend-Feature-Engineering-
+```
 
-Only Admin can create/update/delete doctors
-Only Admin can view all users
-Patients can create appointments
-Doctors/Admin can approve or reject appointments
-✅ 4. Doctor Management Module
+### Install Dependencies
 
-Implemented APIs:
-
-Create Doctor
-Get All Doctors
-Get Doctor By ID
-Update Doctor
-Delete Doctor
-Search Doctor by name/specialization
-Sorting & Pagination supported
-✅ 5. Patient Management Module
-
-Implemented APIs:
-
-Create Patient
-Get All Patients
-Get Patient By ID
-Update Patient
-Delete Patient
-Search Patient by name/phone
-Sorting & Pagination supported
-✅ 6. Enhanced Appointment Management
-
-Implemented:
-
-Book Appointment
-Validate appointment time slot
-Prevent double booking for same doctor
-Filter appointments by:
-status
-doctor_id
-patient_id
-date
-Pagination & Sorting
-Appointment Status Flow
-Pending
-Approved
-Rejected
-Completed
-Cancelled
-Separate APIs Available For:
-Update Appointment Status
-Cancel Appointment
-✅ 7. Secure File Upload Module
-
-Patient report files can be uploaded.
-
-Implemented validations:
-
-File type validation
-File size validation
-Store uploaded file metadata in database
-
-Allowed file types:
-
-PDF
-PNG
-JPEG
-✅ 8. Background Tasks
-
-FastAPI BackgroundTasks are used for:
-
-Sending password reset token simulation
-✅ 9. Standard API Response Format
-
-Every API returns:
-
-{
-  "success": true,
-  "message": "Operation successful",
-  "data": {}
-}
-
-This maintains consistent API response handling.
-
-✅ 10. Global Exception Handling
-
-A global error handler is implemented to catch unexpected backend exceptions and return clean JSON errors.
-
-✅ 11. Clean Service Layer Architecture
-
-The project follows enterprise backend design:
-
-Models Layer
-Schemas Layer
-Repository Layer
-Service Layer
-API Layer
-Middleware Layer
-Utility Layer
-
-This keeps business logic separate and maintainable.
-
-✅ 12. Unit Testing using Pytest
-
-Basic test cases are added for:
-
-Authentication module
-Appointment module
-⚙️ Installation Steps
-Clone Repository
-git clone https://github.com/lokeswarreddy810/Advanced_Backend.git
-cd Advanced_Backend
-Install Required Packages
+```bash
 pip install -r requirements.txt
-Run Backend Server
+```
+
+### Start Backend Server
+
+```bash
 python -m uvicorn app.main:app --reload
+```
 
-Server runs on:
+---
 
-http://127.0.0.1:8000
+## API Documentation
 
-Swagger Documentation:
+Swagger UI:
 
+```text
 http://127.0.0.1:8000/docs
-🔑 Authentication Flow
-Register User
+```
 
-POST:
+---
 
-/api/v1/auth/register
+## User Registration Example
 
-Example:
-
+```json
 {
-  "name": "loki",
-  "email": "loki@gmail.com",
-  "password": "123456",
+  "name": "Sandhiya",
+  "email": "sandhiya@gmail.com",
+  "password": "sandhiya123",
   "role": "Admin"
 }
-Login User
+```
 
-POST:
+---
 
-/api/v1/auth/login
+## Login Example
 
-Use:
+```text
+username: sandhiya@gmail.com
+password: sandhiya123
+```
 
-username = loki@gmail.com
-password = 123456
+---
 
-This generates JWT access token.
+## Appointment Example
 
-Swagger Authorization
-
-Click Authorize in Swagger and login using:
-
-username
-password
-
-No client id / client secret required.
-
-🔁 Forgot Password & Reset Password Flow
-Forgot Password
-POST /api/v1/auth/forgot-password
-
-Returns secure reset token.
-
-Reset Password
-POST /api/v1/auth/reset-password
-
-Use generated token + new password.
-
-📅 Appointment Booking Example
+```json
 {
   "doctor_id": 1,
   "patient_id": 1,
-  "appointment_date": "2026-05-10T10:00:00"
+  "appointment_date": "2026-05-10T10:30:00"
 }
+```
 
-Automatically status:
+---
 
-Pending
+## Appointment Status Values
 
-Then can be changed to:
+* Pending
+* Confirmed
+* Completed
+* Cancelled
 
-Approved
-Rejected
-Completed
-Cancelled
-🧪 Run Unit Tests
+---
+
+## Running Test Cases
+
+```bash
 pytest
-👨‍💻 Developed For
+```
 
-Advanced Backend & Feature Engineering Assignment
+---
 
-Implemented using professional FastAPI backend standards with real-world scalable folder architecture.
+## Backend Design Highlights
 
-✅ Final Outcome
+* Layered Architecture
+* Service & Repository Pattern
+* Reusable API Design
+* Modular Folder Structure
+* JWT Secured Endpoints
+* Scalable Backend Workflow
+* Enterprise-Oriented Code Organization
 
-This project successfully demonstrates:
+---
 
-enterprise backend architecture
-JWT authentication
-RBAC authorization
-advanced appointment workflow
-secure password management
-file upload handling
-testing
-clean scalable code design
+## Conclusion
+
+This project demonstrates backend engineering concepts including API security, authentication workflows, database integration, appointment lifecycle management, and scalable FastAPI development practices suitable for modern healthcare applications.
